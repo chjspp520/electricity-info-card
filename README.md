@@ -1,5 +1,5 @@
 ### Home Assistant 用电信息卡片 (Electricity Info Card)
-一个功能强大且高度可自定义的 Home Assistant 自定义卡片，用于直观展示用电信息、阶梯电价和分时用电数据。
+      electricity-info-card 是一个高度可定制、功能丰富的用电信息展示卡片。它以美观的视觉设计和交互式图表，全面展示家庭用电的各类数据，同时各类信息都可以随心所欲的控制是否显示。其内置light（亮色）、dark（暗色）、power（国家电网主题）、transparent（半透明）、blue、green、red、purple、yellow、cyan、pink、orange 等12种主题，可根据时间自动切换或手动指定主题，另外还可以以时间轴的形式暂时设备的使用情况，用电信息等。
 
 
 
@@ -14,12 +14,14 @@
 
 本月/上月/年度统计 - 多维度的用电数据对比
 
+多种图标展示
+
 ## 📸 界面预览
 
 <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
-  <img src="https://github.com/chjspp520/Electricity-Info-Card/blob/main/%E6%9C%80%E5%A4%A7%E6%A8%A1%E5%BC%8F.png" alt="截图" style="width: 48%; height: auto; margin: 5px;">
+  <img src="https://github.com/chjspp520/Electricity-Info-Card/blob/main/%E4%B8%BB%E7%95%8C%E9%9D%A2.gif" alt="截图" style="width: 48%; height: auto; margin: 5px;">
   <img src="https://github.com/chjspp520/Electricity-Info-Card/blob/main/%E6%9C%80%E5%B0%8F%E6%A8%A1%E5%BC%8F.png" alt="截图" style="width: 48%; height: auto; margin: 5px;">
-  <img src="https://github.com/chjspp520/Electricity-Info-Card/blob/main/%E6%BC%94%E7%A4%BA.gif" alt="截图" style="width: 100%; height: auto; margin: 5px;">  
+  <img src="https://github.com/chjspp520/Electricity-Info-Card/blob/main/%E5%85%A8%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA.gif" alt="截图" style="width: 100%; height: auto; margin: 5px;">  
   
 # 🎨 自定义配置
 阶梯电价配置 - 支持自定义各阶梯电量和价格
@@ -81,17 +83,36 @@ resources:
 
 ```yaml
 type: custom:electricity-info-card
-entity: sensor.electricity_info      # 必需：用电信息传感器实体
-name: 用电信息                      # 可选：卡片标题
-background: '#f0f8ff'  # 十六进制颜色   或者 background: 'rgba(240, 248, 255, 0.9)'  # rgba模式   或者 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'  # 渐变色
-show_name: true                     # 是否显示名称（默认：true）
-show_time_distribution: true        # 是否显示分时用电条（默认：true）
-show_tier_content: true            # 是否显示阶梯详情（默认：true）
-billing_cycle: 7.1-6.30            #阶梯周期
-tier1_max: 2160                     # 第一阶梯最大电量（度）
-tier1_price: 0.4983                # 第一阶梯电价（元/度）
-tier2_max: 4200                     # 第二阶梯最大电量（度）
-tier2_price: 0.5483                # 第二阶梯电价（元/度）
-tier3_price: 0.7983                # 第三阶梯电价（元/度）
+entity: sensor.electricity_info
+name: 家庭用电
+hide:                                  #可选，值见下表，意思是要隐藏的要素，可填写多个，具体见后
+theme: input_select.theme     #可选配置，可以是实体，也可以是文本(也可以填写为on/off)，实体支持两种，一种为开关类，如果填写开关类则只会在亮色和暗色间切换；一种是下拉型实体，可选值为：light、dark、power、transparent、blue、green、red、purple、yellow、cyan、pink、orange
+tier1_max: 2160              #第一阶梯最大值
+tier1_price: 0.4983         #第一阶梯单价
+tier2_max: 4200            #第二阶梯最大值
+tier2_price: 0.5483         #第二阶梯单价
+tier3_price: 0.7983         #第三阶梯单价
+billing_cycle: 7.1-6.30    #阶梯周期，填写月日
+device_entity:                                                                    #可选，用电设备
+  - entity: light.ertongfang_xidingdeng                                 #实体ID
+    name: 儿童房主灯                                                         #实体名称
+    power: 50                                                                    #可选，功率值，如果填写此项会根据此项计算用电量，计算方法为 power x 时长 /1000
+  - entity: climate.xiaomi_cn_572101627_m6
+    name: 儿童房空调
+    on_state: cool,dry,fan_only,heat                                     #可选，定义开启状态值，可以为多项
+  - entity: switch.giot_cn_1126348886_v64ksm_on_p_4_1
+    name: 洗衣机
+    power_entity: sensor.xiyiji_day                                       #可选，用电量实体
+
+//===========================hide隐藏项说明=============================//
+electricity-price-display        电价显示区域        
+remaining-days-display        剩余天数显示区域
+tier-indicator                        阶梯指示器
+time-distribution-bar                分时用电条
+data-container                        统计数据容器
+user-info                                标题
+pie-chart-section                       饼图
+timeline-container              设备时间线容器
+calendar-stats                      日历统计信息
 ```
 
