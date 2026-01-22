@@ -1,6 +1,6 @@
 ### Home Assistant 用电信息卡片 (Electricity Info Card)
 
-electricity-info-card 是一个高度可定制、功能丰富的用电信息展示卡片。它以美观的视觉设计和交互式图表，全面展示家庭用电的各类数据，同时各类信息都可以随心所欲的控制是否显示。其内置light（亮色）、dark（暗色）、power（国家电网主题）、transparent（半透明）、blue、green、red、purple、yellow、cyan、pink、orange 等12种主题，可根据时间自动切换或手动指定主题，另外还可以以时间轴的形式暂时设备的使用情况，用电信息等。
+electricity-info-card 是一个高度可定制、功能丰富的用电信息展示卡片。它以美观的视觉设计和交互式图表，全面展示家庭用电的各类数据，同时各类信息都可以随心所欲的控制是否显示。其内置light（亮色）、dark（暗色）、power（国家电网主题）、transparent（半透明）、blue、green、red、purple、yellow、cyan、pink、orange 等12种主题，可根据时间、设备自动切换主题等。
 
 
 
@@ -40,8 +40,19 @@ electricity-info-card 是一个高度可定制、功能丰富的用电信息展�
 
 直观的视觉指示器
 
-# 🛠️ 安装方法
+# 🏷️ 版本说明
 
+V2.0.1
+
+2026年1月22日更新
+
+1、优化了UI布局，修正了阶梯指示器超出卡片外部（Mr.G先生完成，在此表示感谢）。
+
+2、主题配置新增time（跟随时间切换亮色和暗色）、phone（跟随手机系统或者浏览器切换亮色和暗色），当不配置theme时会使用默认的power主题。
+
+3、图表细节优化。
+
+# 🛠️ 安装方法
 
 有可用的用电信息传感器实体，使用xiaoshi的国家电网辅助实体，或者符合以下数据格式要求的也可以
 ```yaml
@@ -87,7 +98,7 @@ type: custom:electricity-info-card
 entity: sensor.electricity_info
 name: 家庭用电
 hide:                                  #可选，值见下表，意思是要隐藏的要素，可填写多个，具体见后
-theme: input_select.theme     #可选配置，可以是实体，也可以是文本(也可以填写为on/off)，实体支持两种，一种为开关类，如果填写开关类则只会在亮色和暗色间切换；一种是下拉型实体，可选值为：light、dark、power、transparent、blue、green、red、purple、yellow、cyan、pink、orange
+theme: input_select.theme     #可选配置，可以是实体，也可以是文本(也可以填写为on/off)，实体支持两种，一种为开关类，如果填写开关类则只会在亮色和暗色间切换；一种是下拉型实体，可选值为：light、dark、power、transparent、blue、green、red、purple、yellow、cyan、pink、orange、time（跟随时间切换亮色和暗色）、phone（跟随手机系统或者浏览器切换亮色和暗色）
 tier1_max: 2160              #第一阶梯最大值
 tier1_price: 0.4983         #第一阶梯单价
 tier2_max: 4200            #第二阶梯最大值
