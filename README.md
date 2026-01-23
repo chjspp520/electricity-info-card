@@ -1,6 +1,6 @@
 ### Home Assistant 用电信息卡片 (Electricity Info Card)
 
-electricity-info-card 是一个高度可定制、功能丰富的用电信息展示卡片。它以美观的视觉设计和交互式图表，全面展示家庭用电的各类数据，同时各类信息都可以随心所欲的控制是否显示。其内置light（亮色）、dark（暗色）、power（国家电网主题）、transparent（半透明）、blue、green、red、purple、yellow、cyan、pink、orange 等12种主题，可根据时间、设备自动切换主题等。
+electricity-info-card 是一个高度可定制、功能丰富的用电信息展示卡片。它以美观的视觉设计和交互式图表，全面展示家庭用电的各类数据，同时各类信息都可以随心所欲的控制是否显示。其内置light（亮色）、dark（暗色）、black、power（国家电网主题）、transparent（半透明）、blue、green、red、purple、yellow、cyan、pink、orange 等12种主题，可根据时间、设备自动切换主题等。
 
 
 
@@ -41,6 +41,26 @@ electricity-info-card 是一个高度可定制、功能丰富的用电信息展�
 直观的视觉指示器
 
 # 🏷️ 版本说明
+
+v2.0.3
+
+2026年1月23日新增以下功能
+
+1、优化图表显示（电量、金额的轴刻度显示、图例修改）；
+
+2、卡片正常显示的最小宽度为360px；
+
+3、去掉三个按钮中数值的背景阴影，显示更清晰；
+
+4、新增纯黑主题（black）；
+
+5、新增主题切换跟随时间（time）和设备（phone）；6:00-18:00 为白天，其他为晚上
+
+6、新增卡片配置项（dark_light_theme）指定暗色和亮色主题，当跟随时间、跟随设备、on/off时使用dark_light_theme的配置来切换暗色和亮色。
+
+
+总体来说，主要修改通过dark_light_theme配置项来自定义暗色和亮色，在需要切换时（theme值或者实体为time、phone、on、off）根据参数来切换
+
 
 V2.0.1
 
