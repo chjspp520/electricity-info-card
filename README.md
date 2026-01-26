@@ -42,6 +42,84 @@ electricity-info-card 是一个高度可定制、功能丰富的用电信息展�
 
 # 🏷️ 版本说明
 
+### **v2.1.0**
+
+2026年1月26日新增以下功能
+
+1、可导入年月的历史数据，在年月图表中查看；
+
+2、可导入缴费历史，点击余额弹出缴费历史窗口；
+
+3、新增合计环形图表；
+
+ 4、新增分年度环形图表；
+ 
+<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+  <img src="https://github.com/chjspp520/electricity-info-card/blob/main/v2.1.0%E6%BC%94%E7%A4%BA.gif" alt="截图" style="width: 48%; height: auto; margin: 5px;">
+  
+格式要求：
+  ➀、年月历史数据要求：
+ ------------------------------------------------------
+文件地址：www\electricity_history\usage.json
+
+
+```yaml
+{
+"electricity_month": [
+	{
+		"ID" : 1,
+		"year" : 2016,
+		"month" : 4,
+		"y_m" : "2016-04",
+		"ele" : 41.0,
+		"p_ele" : 41.0,
+		"n_ele" : 0,
+		"t_ele" : 0,	
+		"v_ele" : 0,							
+		"money" : 20.43,
+		"stairs" : "1"
+	},
+......
+	{
+		"ID" : 75,
+		"year" : 2024,
+		"month" : 12,
+		"y_m" : "2024-12",
+		"ele" : 331.0,
+		"money" : 180.09,
+		"stairs" : null
+	}
+]}
+```     
+
+
+> ②、缴费历史数据要求：
+> ------------------------------------------------------
+> 文件地址：www\electricity_history\pay.json
+
+```yaml
+{
+"delectricity_pay": [
+	{
+		"id" : 1,
+		"time" : "2022-01-21 19:17:58",
+		"cost" : 200.0,
+		"source" : " 电e宝"
+	},
+.....
+	{
+		"id" : 69,
+		"time" : "2025-08-24 10:02:23",
+		"cost" : 50.0,
+		"source" : " 网上国网交费"
+	}
+]}`
+```     
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
 v2.0.3
 
 2026年1月23日新增以下功能
