@@ -43,6 +43,76 @@ electricity-info-card 是一个高度可定制、功能丰富的用电信息展�
 # 🏷️ 版本说明
 
 
+### v3.0.0
+
+**2026年2月4日新增以下功能**
+
+1. 新增多户/类（水电气），通过utility_type参数控制（ele：电、water：水、gas：气）。
+2. 新增缴费实体。如果配置了缴费实体，则必须指定节点和字段。通过指定节点、字段来映射后点击余额的大字后会弹出缴费记录。
+3. 日图表优化。
+4. 删除通过json文件获取缴费历史的功能。
+5. 删除通过json文件获历史数据的功能。
+6. 修改了卡片配置的要求：
+
+**当为电力时（utility_type为ele ），无需配置阶梯信息。自动识别xiaoshi实体内容来显示，其他用法与以前的一致。**
+```
+type: custom:electricity-info-card
+theme: input_select.theme      #主题，原来的用法，新增了darkgray主题
+dark_light_theme: darkgray,light  #指定暗色和亮色主题，原来的用法
+name: 我的电费、燃气费
+show_name: false    #是否显示名称，可选项，不配置时，显示名称
+multiclass:
+  "1":    #第一户
+    utility_type: ele     #类型，有三种，ele电、gas气、water水
+    info: My                #会在多户的余额下方显示
+    entity: sensor.yong_dian_xin_xi_new   #实体，用电实体（xiaoshi实体）
+    jiaofei_entity: sensor.jiaofei,[node:data,date:time,pay_amount:cost,pay_mode:source]     #缴费实体，注意，必须要指定节点、字段
+    hide: null     #隐藏项，和原来一样
+    device_entity:   #设备实体，配置后可以点击日历单元格，弹出设备使用时长、用电量、和具体的时间（轴）
+      - entity: light.ertongfang_xidingdeng
+        name: 儿童房主灯
+        power: 50
+      - entity: climate.xiaomi_cn_572101627_m6
+        name: 儿童房空调
+        on_state: cool,dry,fan_only,heat
+      - entity: switch.giot_cn_1126348886_v64ksm_on_p_4_1
+        name: 洗衣机
+        power_entity: sensor.xiyiji_day
+  "2":
+    utility_type: gas
+    info: My
+    entity: sensor.tian_ran_qi_2_new
+    jiaofei_entity: >-
+      sensor.tian_ran_qi_2,[node:jiaofei,date:orderDate,pay_amount:orderMoney,pay_mode:state]
+    hide: null1
+    tier1_max: 480
+    tier1_price: 2.14
+    tier2_max: 660
+    tier2_price: 2.57
+    tier3_price: 3.21
+    billing_cycle: 1.1-12.31
+```
+
+**缴费实体配置说明：**
+
+```
+jiaofei_entity: sensor.tian_ran_qi,[node:data,date:time,pay_amount:cost,pay_mode:source]
+        node节点
+        date日期
+        pay_amount支付金额
+        pay_mode支付方式
+```
+
+**演示如下：**
+
+<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+  <img src="https://github.com/chjspp520/electricity-info-card/blob/main/v3.0.0%E6%BC%94%E7%A4%BA.gif" alt="截图" style="width: 55%; height: auto; margin: 5px;">
+
+
+
+
+============================================================================================
+
 ### v2.1.1
 
 2026年1月27日新增以下功能：
