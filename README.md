@@ -42,6 +42,20 @@ electricity-info-card 是一个高度可定制、功能丰富的用电信息展�
 
 # 🏷️ 版本说明
 
+### v3.1.0
+**2026年2月5日**
+
+1. 阶梯指示器适配了6种计费标准（年阶梯峰平谷、年阶梯、月阶梯峰平谷、月阶梯峰平谷变动价格、月阶梯、平均单价）；
+2. 如果配置了缴费实体，年度图表增加了缴费面积以；
+3. 热力图增加了显示今日（红色线框）；
+4. 修复了只有一个户/类时，中间图标错位的问题。
+
+<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;">
+  <img src="https://github.com/chjspp520/electricity-info-card/blob/main/v3.1.0.png" alt="v3.1.0" style="width: 48%; height: auto; margin: 5px;">
+
+
+
+========================================================
 
 ### v3.0.0
 
